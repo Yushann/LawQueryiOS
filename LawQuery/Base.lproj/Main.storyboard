@@ -19,25 +19,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cbf-hN-dY1">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="50"/>
+                                <rect key="frame" x="8" y="8" width="651" height="30"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="w0L-hN-SJb">
-                                        <rect key="frame" x="0.0" y="0.0" width="667" height="50"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="w0L-hN-SJb">
+                                        <rect key="frame" x="0.0" y="0.0" width="651" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="105" borderStyle="roundedRect" placeholder="年" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c0O-OI-wwp">
-                                                <rect key="frame" x="0.0" y="0.0" width="197.5" height="50"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOZ-WD-AW8">
+                                                <rect key="frame" x="0.0" y="0.0" width="153" height="30"/>
+                                                <state key="normal" title="台上"/>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="年" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="c0O-OI-wwp">
+                                                <rect key="frame" x="166" y="0.0" width="153" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="984" borderStyle="roundedRect" placeholder="字號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cFS-ke-62q">
-                                                <rect key="frame" x="210.5" y="0.0" width="219.5" height="50"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="字號" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="cFS-ke-62q">
+                                                <rect key="frame" x="332" y="0.0" width="153" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="search"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cb-WH-Cvp">
-                                                <rect key="frame" x="443" y="0.0" width="224" height="50"/>
+                                                <rect key="frame" x="498" y="0.0" width="153" height="30"/>
                                                 <state key="normal" title="搜尋"/>
                                                 <connections>
                                                     <action selector="searchButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qG5-3Y-SAl"/>
@@ -48,7 +52,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="HoO-CK-EMa"/>
+                                    <constraint firstAttribute="height" constant="30" id="HoO-CK-EMa"/>
                                     <constraint firstAttribute="trailing" secondItem="w0L-hN-SJb" secondAttribute="trailing" id="OTZ-vX-En8"/>
                                     <constraint firstAttribute="bottom" secondItem="w0L-hN-SJb" secondAttribute="bottom" id="OTr-zh-7Kb"/>
                                     <constraint firstItem="w0L-hN-SJb" firstAttribute="top" secondItem="Cbf-hN-dY1" secondAttribute="top" id="iYh-BF-nNt"/>
@@ -56,7 +60,7 @@
                                 </constraints>
                             </view>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENl-NR-LV4">
-                                <rect key="frame" x="0.0" y="50" width="667" height="325"/>
+                                <rect key="frame" x="0.0" y="46" width="667" height="329"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -66,13 +70,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Cbf-hN-dY1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3G4-Fh-sGx"/>
-                            <constraint firstItem="ENl-NR-LV4" firstAttribute="top" secondItem="Cbf-hN-dY1" secondAttribute="bottom" id="8le-q3-6eW"/>
+                            <constraint firstItem="Cbf-hN-dY1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="3G4-Fh-sGx"/>
+                            <constraint firstItem="ENl-NR-LV4" firstAttribute="top" secondItem="Cbf-hN-dY1" secondAttribute="bottom" constant="8" id="8le-q3-6eW"/>
                             <constraint firstItem="ENl-NR-LV4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BQc-SP-sYl"/>
-                            <constraint firstItem="Cbf-hN-dY1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FOv-cr-ggi"/>
+                            <constraint firstItem="Cbf-hN-dY1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="FOv-cr-ggi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ENl-NR-LV4" secondAttribute="bottom" id="GMm-Wr-gHH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ENl-NR-LV4" secondAttribute="trailing" id="c81-hU-jph"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cbf-hN-dY1" secondAttribute="trailing" id="nVL-DE-Bqq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cbf-hN-dY1" secondAttribute="trailing" constant="8" id="nVL-DE-Bqq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 import SwiftSoup
+import MBProgressHUD
 
 class ViewController: UIViewController {
     @IBOutlet weak var webview: WKWebView!
@@ -19,10 +20,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.webview.contentMode = .scaleAspectFit
-        self.searchButtonTapped(self.searchButton)
+        self.yearTextField.becomeFirstResponder()
     }
     
     @IBAction func searchButtonTapped(_ sender: Any) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
         let originalString = String(format: "id=1&v_court=TPS+最高法院&v_sys=M&jud_year=%@&jud_case=台上&jud_no=%@&jud_no_end=&jud_title=&keyword=&sdate=&edate=&page=&searchkw=&jmain=&JSTOCK=&JDG_COMMIS=&JDG_PRESID=&cw=0", self.yearTextField.text!, self.numberTextField.text!)
         let escapedString = originalString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let url = URL(string: "http://jirs.judicial.gov.tw/FJUD/FJUDQRY03_1.aspx?" + escapedString)!
@@ -32,31 +35,34 @@ class ViewController: UIViewController {
         request.addValue("http://jirs.judicial.gov.tw/FJUD/FJUDQRY02_1.aspx?" + escapedString, forHTTPHeaderField: "Referer")
         
         session.dataTask(with: request as URLRequest) { data, response, error in
+            
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.numberTextField.resignFirstResponder()
+            }
+            
             guard let data = data else {
                 return
             }
             
             do {
-                var html = String(data: data, encoding: String.Encoding.utf8)!
-                let doc: Document = try SwiftSoup.parse(html)
-                return try doc.text()
-            } catch Exception.Error(let type, let message) {
+                let html = String(data: data, encoding: String.Encoding.utf8)
+                let doc: Document = try SwiftSoup.parse(html ?? "")
+                let masthead: Element? = try doc.select("td#jfull").first()
+                var content = try masthead?.text() ?? ""
+                let mainRange = content.range(of: "理  由")!
+                content = content.replacingOccurrences(of: "\r\n    ", with: "", options: .literal, range: Range(NSRange(location: mainRange.upperBound.encodedOffset, length: content.endIndex.encodedOffset - mainRange.upperBound.encodedOffset), in: content))
+                content = content.replacingOccurrences(of: "\r\n", with: "<br>")
+                
+                DispatchQueue.main.async {
+                    self.webview.loadHTMLString("<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\"></head><body><span>" + content + "</span></body>", baseURL: nil)
+                }
+            } catch Exception.Error( _, let message) {
                 print(message)
             } catch {
                 print("error")
             }
-           
-//                var html = String(data: data!, encoding: String.Encoding.utf8)!
-//                html = html.replacingOccurrences(of: "<HEAD>", with: "<HEAD><meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;\" />", options: .literal, range: nil)
-//                //                html = html.replacingOccurrences(of: "\r\n", with: "", options: .literal, range: nil)
-//                html = html.replacingOccurrences(of: "\t", with: "", options: .literal, range: nil)
-//                DispatchQueue.main.async {
-//                    self.webview.loadHTMLString(html, baseURL: nil)
-//                }
-            
-            
-            
-            }.resume()
+        }.resume()
     }
 }
 

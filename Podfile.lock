@@ -1,16 +1,20 @@
 PODS:
+  - MBProgressHUD (1.1.0)
   - SwiftSoup (1.7.1)
 
 DEPENDENCIES:
+  - MBProgressHUD
   - SwiftSoup
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - MBProgressHUD
     - SwiftSoup
 
 SPEC CHECKSUMS:
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   SwiftSoup: 277f7ef548826e0ca7603a06b30d4a5df3ee0587
 
-PODFILE CHECKSUM: 7d2547f2ebb90aebc4e432e9a1a83e768235225e
+PODFILE CHECKSUM: c6d6f88b590733bd78a498b1798bfd0f353e0acd
 
 COCOAPODS: 1.5.2
